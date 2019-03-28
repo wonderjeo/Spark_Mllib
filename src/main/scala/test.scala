@@ -1,12 +1,17 @@
-import org.apache.spark. {SparkConf, SparkContext}
+import org.apache.spark.{SparkConf, SparkContext}
+
 /**
-  * Created by mrwanghc on 2018/7/17.
+  * Created by wuke on 2016/7/5.
   */
-object WordCount {
-  def main(args: Array[String]) {
-    val conf = new SparkConf().setAppName("WC")
-    val sc = new SparkContext(conf)
-    sc.textFile(args(0)).flatMap(_.split(" ")).map((_,1)).reduceByKey(_+_).sortBy(_._2,false).saveAsTextFile(args(1))
-    sc.stop()
-  }
+object LoadLibSVMFile extends App{
+  import org.apache.spark.mllib.regression.LabeledPoint
+  import org.apache.spark.mllib.util.MLUtils
+  import org.apache.spark.rdd.RDD
+
+  val conf = new SparkConf().setAppName("LogisticRegressionMail").setMaster("local")
+
+  val sc = new SparkContext(conf)
+  val examples: RDD[LabeledPoint] = MLUtils.loadLibSVMFile(sc, "data/mllib/sample_libsvm_data.txt")
+
+  println(examples.first)
 }
