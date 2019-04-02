@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e2b33fad-f533-4ec3-b6fe-841f57e4b4e3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/NN/NeuralNet.scala" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/NN/NeuralNetModel.scala" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/test.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/test.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/util/RandSampleData.scala" beforeDir="false" />
-    </list>
+    <list default="true" id="e2b33fad-f533-4ec3-b6fe-841f57e4b4e3" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,7 +13,7 @@
     <session id="-877398201">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.21" value="1" />
           <entry key="project.open.time.23" value="2" />
@@ -54,8 +48,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/test.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="39" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
+            <state relative-caret-position="204">
+              <caret line="12" column="34" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -131,6 +125,11 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="scala" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Spark_group18" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spark_group18" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -138,7 +137,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554133179653" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554178480808" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../CNN_demo" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -156,7 +155,14 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.LinearRegression">
+    <configuration name="LinearRegression" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="LinearRegression" />
+      <module name="sparktest" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Test_example_NN" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="Test_example_NN" />
       <module name="sparktest" />
@@ -164,8 +170,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Test_example_NN" />
+      <item itemvalue="Application.LinearRegression" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.LinearRegression" />
         <item itemvalue="Application.Test_example_NN" />
       </list>
     </recent_temporary>
@@ -185,9 +196,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.060761347" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1749634" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -196,15 +206,15 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49926794" weight="0.21875" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49853587" weight="0.2470238" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50512445" side_tool="true" visible="true" weight="0.32886904" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5014641" side_tool="true" visible="true" weight="0.2470238" />
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49853587" weight="0.32886904" />
-      <window_info active="true" anchor="bottom" id="Messages" order="10" sideWeight="0.49487555" visible="true" weight="0.32886904" />
+      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49487555" weight="0.32886904" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -245,8 +255,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/test.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="39" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
+        <state relative-caret-position="204">
+          <caret line="12" column="34" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
