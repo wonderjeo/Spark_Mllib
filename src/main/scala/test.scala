@@ -6,13 +6,13 @@ import org.apache.spark.sql.SparkSession
 object SparkMl{
   def main(args: Array[String]): Unit ={
     val spark = SparkSession.builder.appName("Simple Application").getOrCreate()
-    val data = spark.read.format("libsvm").load("hdfs:///data/mllib/sample_multiclass_classification_data.txt")
+    val data = spark.read.format("libsvm").load("hdfs:///data/labeled-points.txt")
 
     val splits = data.randomSplit(Array(0.7, 0.3), seed = 1234L)
     val train = splits(0)
     val test = splits(1)
 
-    val layers = Array[Int](4, 5, 4, 3)
+    val layers = Array[Int](7, 5, 4, 10)
 
     val trainer = new MultilayerPerceptronClassifier().setLayers(layers).setBlockSize(128).setMaxIter(100)
     val model = trainer.fit(train)
