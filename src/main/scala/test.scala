@@ -1,26 +1,26 @@
-import org.apache.log4j.{Level, Logger}
-import org.apache.spark.mllib.linalg.Vectors
-import org.apache.spark.mllib.regression.{LabeledPoint, LinearRegressionWithSGD}
 import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.spark.ml.classification.MultilayerPerceptronClassifier
+import org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator
+import org.apache.spark.sql.SparkSession
 
-object LinearRegression{
-  val conf = new SparkConf()
-    .setMaster("local")
-    .setAppName("LinearRegression")
-  val sc = new SparkContext(conf)
-
+object SparkMl{
   def main(args: Array[String]): Unit ={
-    val data = sc.textFile("hdfs:///data/lr.txt")
-    val parsedData = data.map{line=>
-    val parts = line.split('|')
-    LabeledPoint(parts(0).toDouble, Vectors.dense(parts(1).split(',').map(_.toDouble)))
-  }.cache()
+    val spark = SparkSession.builder.appName("Simple Application").getOrCreate()
+    val data = spark.read.format("libsvm").load("hdfs:///data/mllib/sample_multiclass_classification_data.txt")
 
-    val model = LinearRegressionWithSGD.train(parsedData,2,0.1)
+    val splits = data.randomSplit(Array(0.7, 0.3), seed = 1234L)
+    val train = splits(0)
+    val test = splits(1)
 
-    val result = model.predict(Vectors.dense(1, 3))
-    println(model.weights)
-    println(model.weights.size)
-    println(result)
+    val layers = Array[Int](4, 5, 4, 3)
+
+    val trainer = new MultilayerPerceptronClassifier().setLayers(layers).setBlockSize(128).setMaxIter(100)
+    val model = trainer.fit(train)
+    val result = model.transform(test)
+    val predictionAndLabels = result.select("prediction", "label")
+    val evaluator = new MulticlassClassificationEvaluator().setMetricName("accuracy")
+    println(s"Precision := ${evaluator.evaluate(predictionAndLabels)}")
+
+    spark.stop()
   }
 }
