@@ -6,8 +6,8 @@ import org.apache.spark.sql.SparkSession
 object SparkMl{
   def main(args: Array[String]): Unit ={
     val spark = SparkSession.builder.appName("Simple Application").getOrCreate()
-    val train = spark.read.format("libsvm").load("hdfs:///data/fashion-mnist_train.csv")
-    val test = spark.read.format("libsvm").load("hdfs:///data/fashion-mnist_test.csv")
+    val train = spark.read.format("libsvm").load("hdfs:///data/fashion-mnist_train.txt")
+    val test = spark.read.format("libsvm").load("hdfs:///data/fashion-mnist_test.txt")
 
     val layers = Array[Int](784, 10, 10, 10)
 
