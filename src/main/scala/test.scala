@@ -1,22 +1,28 @@
-import org.apache.spark.{SparkConf, SparkContext}
-import org.apache.spark.ml.classification.MultilayerPerceptronClassifier
-import org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator
+import org.apache.spark.ml.linalg.Vectors
+import org.apache.spark.sql.Row
+import org.apache.spark.ml.regression.LinearRegression
 import org.apache.spark.sql.SparkSession
 
 object SparkMl{
   def main(args: Array[String]): Unit ={
     val spark = SparkSession.builder.appName("Simple Application").getOrCreate()
-    val train = spark.read.format("libsvm").load("hdfs:///data/fashion-mnist_train.txt")
-    val test = spark.read.format("libsvm").load("hdfs:///data/fashion-mnist_test.txt")
+    val data = spark.read.text("hdfs:///data/fashion-mnist_train.txt")
+    val training = data.map {
+      case Row(line: String) =>
+        var arr = line.split('	')
+        (arr(0).toDouble, Vectors.dense(line.split('	').map(_.toDouble)))
+    }.toDF("label", "features")
 
-    val layers = Array[Int](784, 10, 10, 10)
-
-    val trainer = new MultilayerPerceptronClassifier().setLayers(layers).setBlockSize(128).setMaxIter(100)
-    val model = trainer.fit(train)
-    val result = model.transform(test)
-    val predictionAndLabels = result.select("prediction", "label")
-    val evaluator = new MulticlassClassificationEvaluator().setMetricName("accuracy")
-    println(s"Precision := ${evaluator.evaluate(predictionAndLabels)}")
+    val lr = new LinearRegression().setMaxIter(100000).setRegParam(0.3).setElasticNetParam(0.8)
+    val lrModel = lr.fit(training)
+    println(s"Coefficients: ${lrModel.coefficients} Intercept: ${lrModel.intercept}")
+    val trainingSummary = lrModel.summary
+    println(s"numIterations: ${trainingSummary.totalIterations}")
+    println(s"objectiveHistory: [${trainingSummary.objectiveHistory.mkString(",")}]")
+    trainingSummary.residuals.show()
+    println(s"RMSE: ${trainingSummary.rootMeanSquaredError}")
+    println(s"r2: ${trainingSummary.r2}")
+    trainingSummary.predictions.show()
 
     spark.stop()
   }
