@@ -6,7 +6,7 @@ import org.apache.spark.sql.SparkSession
 object SparkMl{
   def main(args: Array[String]): Unit ={
     val spark = SparkSession.builder.appName("Simple Application").getOrCreate()
-    val data = spark.read.text("hdfs:///data/fashion-mnist_train.txt")
+    val data = spark.read.text("hdfs:///data/dataset.txt")
     val training = data.map {
       case Row(line: String) =>
         var arr = line.split('	')
